@@ -9,4 +9,5 @@
     * [SpringBoot整合MongoDB(1)](mongo/springboot-mongo-1.md)
     * [SpringBoot整合MongoDB(2)](mongo/springboot-mongo-2.md)
     * [SpringBoot整合MongoDB(3)](mongo/springboot-mongo-3.md)
+    * [SpringBoot整合MongoDB(4)](mongo/springboot-mongo-4.md)
 
