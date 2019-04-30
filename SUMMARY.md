@@ -10,4 +10,7 @@
     * [SpringBoot整合MongoDB(2)](mongo/springboot-mongo-2.md)
     * [SpringBoot整合MongoDB(3)](mongo/springboot-mongo-3.md)
     * [SpringBoot整合MongoDB(4)](mongo/springboot-mongo-4.md)
+* [prometheus监控](prometheus/readme.md)
+    * [springboot整合prometheus(一)](prometheus/springboot-prometheus-01.md)
+    * [springboot整合prometheus(二)](prometheus/springboot-prometheus-02.md)
 
