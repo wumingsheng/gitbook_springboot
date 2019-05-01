@@ -114,12 +114,12 @@ public class PromusConfig {
 	
 	
 	@Bean
-    public Counter requestTotalCountCollector(){
-        return  Counter.build()
-         .name("http_requests_total")
-         .labelNames("path", "method", "code")
-         .help("http请求总计数").register(collectorRegistry);
-    }
+  public Counter requestTotalCountCollector(){
+      return  Counter.build()
+       .name("http_requests_total")
+       .labelNames("path", "method", "code")
+       .help("http请求总计数").register(collectorRegistry);
+  }
 
 }
 
@@ -205,18 +205,18 @@ public class PromusConfig {
 	
 	
 	@Bean
-    public Counter requestTotalCountCollector(){
-        return  Counter.build()
-         .name("http_requests_total")
-         .labelNames("path", "method", "code")
-         .help("http请求总计数").register(collectorRegistry);
-    }
+  public Counter requestTotalCountCollector(){
+      return  Counter.build()
+       .name("http_requests_total")
+       .labelNames("path", "method", "code")
+       .help("http请求总计数").register(collectorRegistry);
+  }
 	
 	@Bean
-    @Primary
-    public YourCustomCollector yourCustomCollector(){
-        return new YourCustomCollector().register(collectorRegistry);
-    }
+  @Primary
+  public YourCustomCollector yourCustomCollector(){
+      return new YourCustomCollector().register(collectorRegistry);
+  }
 
 }
 ```
