@@ -139,7 +139,7 @@ import io.prometheus.client.Counter;
 public class DemoController {
 	
 	@Autowired
-    @Qualifier("requestTotalCountCollector")
+  @Qualifier("requestTotalCountCollector")
 	private Counter counter;
 	
 	@GetMapping("ddd")
