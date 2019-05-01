@@ -19,9 +19,19 @@ Gauge可以用来存放一个可以任意变大变小的数值，通常用于测
 3. cpu
 4. 线程数
 
-## 3、Summary
 
-类似于 Histogram, 典型的应用如：请求持续时间，响应大小。提供观测值的 count 和 sum 功能。提供百分位的功能，即可以按百分比划分跟踪结果。
+
+## 3、Histogram
+
+直方图，内置分析样本的分布情况
+
+1. 请求持续时间
+2. 响应大小。
+3. 区间数据分组统计
+
+## 4、Summary
+
+摘要 自定义样本分布情况
 
 1. 观察总和
 2. 观察计数 
@@ -29,13 +39,6 @@ Gauge可以用来存放一个可以任意变大变小的数值，通常用于测
 
 > 典型的用例是观察请求延迟。 默认情况下，Summary提供延迟的中位数。
 
-## 4、Histogram
-
-可以理解为柱状图，主要用于表示一段时间范围内对数据进行采样
-
-1. 请求持续时间
-2. 响应大小。
-3. 区间数据分组统计
 
 > 1. [https://blog.csdn.net/michaelgo/article/details/81709652](https://blog.csdn.net/michaelgo/article/details/81709652)
 > 2. [https://github.com/prometheus/client_java](https://github.com/prometheus/client_java)

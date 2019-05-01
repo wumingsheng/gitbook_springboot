@@ -13,4 +13,5 @@
 * [prometheus监控](prometheus/readme.md)
     * [springboot整合prometheus(一)](prometheus/springboot-prometheus-01.md)
     * [springboot整合prometheus(二)](prometheus/springboot-prometheus-02.md)
+    * [springboot整合prometheus(三)](prometheus/springboot-prometheus-03.md)
 
