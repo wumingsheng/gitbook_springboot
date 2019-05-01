@@ -1,5 +1,8 @@
 # springboot整合prometheus(五)
 
+![](/assets/20190502002122.png)
+
+
 ##　Prometheus 的特点
 
 * 多维数据模型（时序列数据由metric名和一组key/value组成）
