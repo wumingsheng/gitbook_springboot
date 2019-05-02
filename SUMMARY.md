@@ -16,4 +16,6 @@
     * [springboot整合prometheus(三)](prometheus/springboot-prometheus-03.md)
     * [springboot整合prometheus(四)](prometheus/springboot-prometheus-04.md)
     * [springboot整合prometheus(五)](prometheus/springboot-prometheus-05.md)
+* [spring IOC](IOC/readme.md)
+    * [注解IOC](IOC/annotaion.md)
 
