@@ -698,7 +698,33 @@ class YourClass {
 
 http请求时长的统计
 
-
+```java
+	@Autowired
+	@Qualifier("httpRequestsLatencySecondsHistogramCollector")
+	private Histogram httpRequestsLatencySecondsHistogramCollector;
+	
+	
+	@GetMapping("hello")
+	public Object sayHello(HttpServletRequest request) throws Exception {
+		String requestURI = request.getRequestURI();
+        String method = request.getMethod();
+        
+		Timer timer = httpRequestsLatencySecondsHistogramCollector.labels(requestURI, method, String.valueOf(200)).startTimer();
+		//your code
+		timer.observeDuration();
+		return "hello prometheus";
+	}
+	
+	@GetMapping("world")
+	public Object sayWorld(HttpServletRequest request) throws Exception {
+		String requestURI = request.getRequestURI();
+        String method = request.getMethod();
+		Timer timer = httpRequestsLatencySecondsHistogramCollector.labels(requestURI, method, String.valueOf(200)).startTimer();
+		// your code
+		timer.observeDuration();
+		return "world prometheus";
+	}
+```
 
 
 
