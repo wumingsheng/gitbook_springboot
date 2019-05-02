@@ -543,6 +543,71 @@ http_requests_bytes_summary_sum{path="/hello",method="GET",code="200",} 485.0
 ```
 
 
+### 自定义collector
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import io.prometheus.client.Collector;
+import io.prometheus.client.GaugeMetricFamily;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class MyCollector extends Collector{
+
+	@Override
+    public List<MetricFamilySamples> collect() {
+		
+		log.info("============custom defined collector===================");
+        List<MetricFamilySamples> mfs = new ArrayList<MetricFamilySamples>();
+        // With no labels.
+        mfs.add(new GaugeMetricFamily("my_gauge", "help", 42));
+        // With labels
+        GaugeMetricFamily labeledGauge = new GaugeMetricFamily("my_other_gauge", "help", Arrays.asList("labelname"));
+        labeledGauge.addMetric(Arrays.asList("foo"), new Random().nextInt(5));
+        labeledGauge.addMetric(Arrays.asList("bar"), new Random().nextInt(5));
+        mfs.add(labeledGauge);
+        return mfs;
+      }
+
+
+}
+
+```
+
+```java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+import io.prometheus.client.CollectorRegistry;
+
+@Component
+public class MyCollectorMetrics {
+	
+	@Autowired
+	private CollectorRegistry collectorRegistry;
+
+	@Bean
+	public MyCollector myCollector() {
+		return new MyCollector().register(collectorRegistry);
+	}
+
+}
+```
+
+prometheus每次拉取metrics的时候，都会执行`MyCollector.collect()`方法
+
+prometheus提供的collector和自己定义的collector区别：
+
+prometheus定义的是成员变量，每次prometheus拉取数据的时候，直接读取内存中的数据，内存中的数据是我们在数据改变的时候就设置的到内存中了已近，说白了就是我们把数据推到内存中的成员变量上，
+而prometheus直接从成员变量上拉取数据
+自定义的collector是每次prometheus读取数据的时候，都要执行方法，从数据哭或者其他方法获取数据
+
+
 ### Timer计时器
 
 Timer(计时器)同时测量一个特定的代码逻辑块的调用(执行)速度和它的时间分布。简单来说，就是在调用结束的时间点记录整个调用块执行的总时间，适用于测量短时间执行的事件的耗时分布
