@@ -498,7 +498,7 @@ http_requests_bytes_histogram_count{path="/hello",method="GET",code="200",} 11.0
 http_requests_bytes_histogram_sum{path="/hello",method="GET",code="200",} 427.0
 ```
 
-### Summary
+### 4. Summary
 
 ```java
 Summary.build()
@@ -547,7 +547,7 @@ http_requests_bytes_summary_sum{path="/hello",method="GET",code="200",} 485.0
 ```
 
 
-### 自定义collector
+### 5. 自定义collector
 
 ```java
 import java.util.ArrayList;
@@ -612,7 +612,7 @@ prometheus定义的是成员变量，每次prometheus拉取数据的时候，直
 自定义的collector是每次prometheus读取数据的时候，都要执行方法，从数据哭或者其他方法获取数据
 
 
-### Timer计时器
+### 6. Timer计时器
 
 Timer(计时器)同时测量一个特定的代码逻辑块的调用(执行)速度和它的时间分布。简单来说，就是在调用结束的时间点记录整个调用块执行的总时间，适用于测量短时间执行的事件的耗时分布
 
