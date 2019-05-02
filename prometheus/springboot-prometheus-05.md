@@ -81,5 +81,149 @@ management.endpoints.web.exposure.include=prometheus,health
 
 ### 请求总量的监控
 
+最终的统计结果样式：
+
+```
+# HELP http_requests_total http请求总计数
+# TYPE http_requests_total counter
+http_requests_total{path="/hello",method="GET",code="200",} 3.0
+http_requests_total{path="/world",method="GET",code="200",} 5.0
+```
+
+首先需要定义数据收集器collector
+
+```java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+import io.prometheus.client.CollectorRegistry;
+import io.prometheus.client.Counter;
+
+@Component
+public class CounterMetrics {
+
+	@Autowired
+	private CollectorRegistry collectorRegistry;
+
+	@Bean
+	public Counter httpRequestsTotalCounterCollector() {
+		return Counter.build().name("http_requests_total").labelNames("path", "method", "code").help("http请求总计数")
+				.register(collectorRegistry);
+	}
+
+}
+```
+
+定义一个http拦截器
+
+```java
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import io.prometheus.client.Counter;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
+public class PrometheusInterceptor implements HandlerInterceptor {
+	
+	@Autowired
+	@Qualifier("httpRequestsTotalCounterCollector")
+	private Counter httpRequestsTotalCounterCollector;
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		log.info("Prometheus intercrptor preHandle ...");
+		return HandlerInterceptor.super.preHandle(request, response, handler);
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		log.info("Prometheus intercrptor postHandle ...");
+		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+		log.info("Prometheus intercrptor afterCompletion ...");
+		
+		String requestURI = request.getRequestURI();
+        String method = request.getMethod();
+        int status = response.getStatus();
+		
+        httpRequestsTotalCounterCollector.labels(requestURI, method, String.valueOf(status)).inc();
+		
+		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+	}
+	
+	
+
+}
+```
+
+注册http拦截器使其生效
+
+```java
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.example.demo.interceptor.PrometheusInterceptor;
+
+@Configuration
+public class InterceptorConfiguration implements WebMvcConfigurer {
+
+
+	@Bean
+	public HandlerInterceptor prometheusInterceptor() {
+		return new PrometheusInterceptor();
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(prometheusInterceptor()).addPathPatterns("/**");
+	}
+}
+
+```
+
+定义两个http请求接口
+
+```java
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+	
+	
+	@GetMapping("hello")
+	public Object sayHello() {
+		return "hello prometheus";
+	}
+	
+	@GetMapping("world")
+	public Object sayWorld() {
+		return "world prometheus";
+	}
+
+
+}
+```
+
+
+
+
 
 
