@@ -23,4 +23,6 @@
     * [拦截器](filter-and-interceptor/interceptor.md)
 * [mybatis](mybatis/readme.md)
     * [springboot快速整合mybatis](mybatis/quick-start.md)
+* [使用缓存](cache/readme.md)
+    * [redis-cache](cache/redis-cache.md)
 
