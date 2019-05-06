@@ -32,6 +32,4 @@
 * [限流](ratelimit/readme.md)
     * [使用Sentinel实现接口限流](ratelimit/sentinel/readme.md)
         * [使用Sentinel实现接口限流](ratelimit/sentinel/sentinel-01.md)
-        * [Sentinel使用Nacos存储规则](ratelimit/sentinel/sentinel-02.md)
-        * [Sentinel使用Apollo存储规则](ratelimit/sentinel/sentinel-03.md)
 
