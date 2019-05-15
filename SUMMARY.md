@@ -27,6 +27,7 @@
     * [redis-cache](cache/redis-cache.md)
 * [异步线程池](async/readme.md)
     * [快速开始](async/quick-start.md)
+    * [线程池](async/executors.md)
 * [AOP切面](aop/readme.md)
     * [快速开始](aop/quick-start.md)
 * [限流](ratelimit/readme.md)
