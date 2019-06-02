@@ -1,0 +1,76 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'gitbook-cli', '-g' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData gitbook-cli
+8 silly fetchNamedPackageData gitbook-cli
+9 silly mapToRegistry name gitbook-cli
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/gitbook-cli
+13 verbose request uri https://registry.npmjs.org/gitbook-cli
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 11:52:01 AM
+16 verbose request id 83181ff2cf5293c0
+17 http request GET https://registry.npmjs.org/gitbook-cli
+18 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=Parse Error
+19 info attempt registry request try #2 at 11:52:11 AM
+20 http request GET https://registry.npmjs.org/gitbook-cli
+21 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=Parse Error
+22 info attempt registry request try #3 at 11:53:12 AM
+23 http request GET https://registry.npmjs.org/gitbook-cli
+24 silly fetchPackageMetaData Error: tunneling socket could not be established, cause=Parse Error
+24 silly fetchPackageMetaData     at ClientRequest.onError (/usr/share/npm/node_modules/request/node_modules/tunnel-agent/index.js:174:17)
+24 silly fetchPackageMetaData     at Object.onceWrapper (events.js:315:30)
+24 silly fetchPackageMetaData     at emitOne (events.js:116:13)
+24 silly fetchPackageMetaData     at ClientRequest.emit (events.js:211:7)
+24 silly fetchPackageMetaData     at Socket.socketOnData (_http_client.js:445:9)
+24 silly fetchPackageMetaData     at emitOne (events.js:116:13)
+24 silly fetchPackageMetaData     at Socket.emit (events.js:211:7)
+24 silly fetchPackageMetaData     at addChunk (_stream_readable.js:263:12)
+24 silly fetchPackageMetaData     at readableAddChunk (_stream_readable.js:250:11)
+24 silly fetchPackageMetaData     at Socket.Readable.push (_stream_readable.js:208:10)
+24 silly fetchPackageMetaData  error for gitbook-cli { Error: tunneling socket could not be established, cause=Parse Error
+24 silly fetchPackageMetaData     at ClientRequest.onError (/usr/share/npm/node_modules/request/node_modules/tunnel-agent/index.js:174:17)
+24 silly fetchPackageMetaData     at Object.onceWrapper (events.js:315:30)
+24 silly fetchPackageMetaData     at emitOne (events.js:116:13)
+24 silly fetchPackageMetaData     at ClientRequest.emit (events.js:211:7)
+24 silly fetchPackageMetaData     at Socket.socketOnData (_http_client.js:445:9)
+24 silly fetchPackageMetaData     at emitOne (events.js:116:13)
+24 silly fetchPackageMetaData     at Socket.emit (events.js:211:7)
+24 silly fetchPackageMetaData     at addChunk (_stream_readable.js:263:12)
+24 silly fetchPackageMetaData     at readableAddChunk (_stream_readable.js:250:11)
+24 silly fetchPackageMetaData     at Socket.Readable.push (_stream_readable.js:208:10) code: 'ECONNRESET' }
+25 silly rollbackFailedOptional Starting
+26 silly rollbackFailedOptional Finishing
+27 silly runTopLevelLifecycles Starting
+28 silly runTopLevelLifecycles Finishing
+29 silly install printInstalled
+30 verbose stack Error: tunneling socket could not be established, cause=Parse Error
+30 verbose stack     at ClientRequest.onError (/usr/share/npm/node_modules/request/node_modules/tunnel-agent/index.js:174:17)
+30 verbose stack     at Object.onceWrapper (events.js:315:30)
+30 verbose stack     at emitOne (events.js:116:13)
+30 verbose stack     at ClientRequest.emit (events.js:211:7)
+30 verbose stack     at Socket.socketOnData (_http_client.js:445:9)
+30 verbose stack     at emitOne (events.js:116:13)
+30 verbose stack     at Socket.emit (events.js:211:7)
+30 verbose stack     at addChunk (_stream_readable.js:263:12)
+30 verbose stack     at readableAddChunk (_stream_readable.js:250:11)
+30 verbose stack     at Socket.Readable.push (_stream_readable.js:208:10)
+31 verbose cwd /home/oem/Documents/gitbook/gitbook_springboot
+32 error Linux 4.15.0-50-generic
+33 error argv "/usr/bin/node" "/usr/bin/npm" "install" "gitbook-cli" "-g"
+34 error node v8.10.0
+35 error npm  v3.5.2
+36 error code ECONNRESET
+37 error network tunneling socket could not be established, cause=Parse Error
+38 error network This is most likely not a problem with npm itself
+38 error network and is related to network connectivity.
+38 error network In most cases you are behind a proxy or have bad network settings.
+38 error network
+38 error network If you are behind a proxy, please make sure that the
+38 error network 'proxy' config is set properly.  See: 'npm help config'
+39 verbose exit [ 1, true ]
