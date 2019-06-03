@@ -37,3 +37,4 @@
     * [快速开始](MybatisPlus/quickstart.md)
     * [基本使用](MybatisPlus/basic-use.md)
     * [查询方法](MybatisPlus/query-method.md)
+    * [主键策略和基本配置](MybatisPlus/pk-config.md)
