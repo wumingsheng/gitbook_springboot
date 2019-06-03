@@ -35,3 +35,5 @@
         * [使用Sentinel实现接口限流](ratelimit/sentinel/sentinel-01.md)
 * [MybatisPlus](MybatisPlus/readme.md)
     * [快速开始](MybatisPlus/quickstart.md)
+    * [基本使用](MybatisPlus/basic-use.md)
+    * [查询方法](MybatisPlus/query-method.md)
