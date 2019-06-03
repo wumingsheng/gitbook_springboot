@@ -226,8 +226,33 @@ Page<User> page = new Page<>(1, 2, true);//true查询总条数count,false不查�
 
 
 
+## 修改
 
+```java
+LambdaUpdateWrapper<User> lambdaUpdate = Wrappers.lambdaUpdate();
+lambdaUpdate.like(User::getName, "tom");
 
+//修改方式一
+lambdaUpdate.set(User::getName, "jack");
+int update = userMapper.update(null, lambdaUpdate);
+//修改方式二
+User user = new User();
+user.setName("jack");
+int update2 = userMapper.update(user, lambdaUpdate);
+		
+
+```
+链式
+
+```java
+
+//method-1
+new LambdaUpdateChainWrapper<>(userMapper).like(User::getName, "Tom").set(User::getAge, 100).update();
+//method-2
+User user = new User();
+user.setAge(50);
+boolean update = new LambdaUpdateChainWrapper<>(userMapper).like(User::getName, "Jack").update(user);
+```
 
 
 
