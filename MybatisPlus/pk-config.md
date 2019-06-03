@@ -105,15 +105,65 @@ User user = new User().selectById(1L);
 
 
 
+## 主键策略
+
+局部主键策略
+
+```java
+
+    @TableId(value = "id", type = IdType.ID_WORKER)
+    private Long id;
+
+```
+主键会自动帮我们set回po里面
+
+
+全局主键配置
+
+```properties
+## mybatis-plus
+mybatis-plus.global-config.db-config.id-type=uuid
+# mybatis-plus.mapper-locations=```properties
+
+```
+
+## 通用service
+
+
+```java
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.demo.dao.UserMapper;
+import com.example.demo.po.User;
+
+
+@Service
+public class UserService extends ServiceImpl<UserMapper, User> implements IService<User> {
+
+
+}
+```
 
 
 
+```java
 
+th(SpringRunner.class)
+@SpringBootTest
+public class UserMapperTest {
+	
+	@Autowired
+	private UserService userService;
 
+	@Test
+	public void test() {
+		//false 如果数据记录多余一条，不会抛出异常，取第一条
+		userService.getOne(Wrappers.<User>lambdaQuery().like(User::getName, "tom"), false);
+	}
+}
 
-
-
-
+```
 
 
 
